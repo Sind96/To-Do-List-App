@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 var cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const port = 3000;
 const router = require("./router");
@@ -12,10 +13,7 @@ app.use(router);
 
 (async function () {
   try {
-    mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    mongoose.connect(process.env.MONGO_URI);
     app.listen(port);
     console.log(
       `Server running on PORT ${port} and Database has successfully connected!🕊️`

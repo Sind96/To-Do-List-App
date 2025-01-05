@@ -28,7 +28,7 @@ exports.putTasks = async (req, res) => {
       { title, completed, updatedAt: new Date() },
       { new: true }
     );
-    if (!updatedTask) return res.status(404).send("Task not found");
+    if (!updatedTasks) return res.status(404).send("Task not found");
   } catch (error) {
     console.log(`There has been an error with putTasks:`, error);
     res.status(500).send(`Internal Server Error`);

@@ -20,6 +20,15 @@ exports.postTasks = async (req, res) => {
 
 exports.putTasks = async (req, res) => {
   try {
+    const { id } = req.params;
+    const { title, completed } = req.body;
+
+    const updatedTasks = await toDoList.findByIdAndUpdate(
+      id,
+      { title, completed, updatedAt: new Date() },
+      { new: true }
+    );
+    if (!updatedTask) return res.status(404).send("Task not found");
   } catch (error) {
     console.log(`There has been an error with putTasks:`, error);
     res.status(500).send(`Internal Server Error`);

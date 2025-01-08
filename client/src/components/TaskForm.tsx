@@ -4,7 +4,7 @@ import { TaskFormProps } from "../types/propType";
 export default function TaskForm({ onSubmit }: TaskFormProps) {
   const [title, setTitle] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!title.trim()) return;
     onSubmit(title);

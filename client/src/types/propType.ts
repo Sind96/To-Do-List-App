@@ -16,3 +16,4 @@ export interface TaskListProps {
   onDelete: (id: string) => void;
   onToggleComplete: (id: string, completed: boolean) => void;
 }
+

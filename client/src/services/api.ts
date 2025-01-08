@@ -3,11 +3,12 @@ const BASE_URL = "http://localhost:3000/tasks";
 // Fetch all tasks
 export const fetchTasks = async () => {
   try {
-    const response = await fetch(BASE_URL);
-    if (!response.ok) {
-      throw new Error(`Error fetching tasks: ${response.statusText}`);
+    const tasks = await fetch(BASE_URL);
+    if (!tasks.ok) {
+      throw new Error(`Error fetching tasks: ${tasks.statusText}`);
     }
-    return await response.json();
+    const result = await tasks.json();
+    return result;
   } catch (error) {
     console.error(`Error in fetchTasks: ${error.message}`);
     throw error;
@@ -17,7 +18,7 @@ export const fetchTasks = async () => {
 // Create a new task
 export const createTask = async (title: string) => {
   try {
-    const response = await fetch(BASE_URL, {
+    const tasks = await fetch(BASE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,10 +26,11 @@ export const createTask = async (title: string) => {
       body: JSON.stringify({ title }),
     });
 
-    if (!response.ok) {
-      throw new Error(`Error creating task: ${response.statusText}`);
+    if (!tasks.ok) {
+      throw new Error(`Error creating task: ${tasks.statusText}`);
     }
-    return await response.json();
+    const result = await tasks.json();
+    return result;
   } catch (error) {
     console.error(`Error in createTask: ${error.message}`);
     throw error;
@@ -41,7 +43,7 @@ export const updateTask = async (
   updatedTask: { title?: string; completed?: boolean }
 ) => {
   try {
-    const response = await fetch(`${BASE_URL}/${id}`, {
+    const tasks = await fetch(`${BASE_URL}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -49,10 +51,11 @@ export const updateTask = async (
       body: JSON.stringify(updatedTask),
     });
 
-    if (!response.ok) {
-      throw new Error(`Error updating task: ${response.statusText}`);
+    if (!tasks.ok) {
+      throw new Error(`Error updating task: ${tasks.statusText}`);
     }
-    return await response.json();
+    const result = await tasks.json();
+    return result;
   } catch (error) {
     console.error(`Error in updateTask: ${error.message}`);
     throw error;
@@ -62,14 +65,15 @@ export const updateTask = async (
 // Delete a task
 export const deleteTask = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/${id}`, {
+    const tasks = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
     });
 
-    if (!response.ok) {
-      throw new Error(`Error deleting task: ${response.statusText}`);
+    if (!tasks.ok) {
+      throw new Error(`Error deleting task: ${tasks.statusText}`);
     }
-    return await response.json();
+    const result = await tasks.json();
+    return result;
   } catch (error) {
     console.error(`Error in deleteTask: ${error.message}`);
     throw error;

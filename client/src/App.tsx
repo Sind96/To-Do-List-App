@@ -24,6 +24,13 @@ function App() {
     loadTasks();
   }, []);
 
+  const addTask = async (title: string) => {
+    const newTask = await createTask(title);
+    setTasks([...tasks, newTask]);
+  };
+
+
+
   return (
     <>
       <p className="text-blue-500">Hello</p>

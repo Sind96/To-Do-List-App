@@ -9,3 +9,10 @@ export interface TaskProps {
 export interface TaskFormProps {
   onSubmit: (title: string) => void;
 }
+
+export interface TaskListProps {
+  tasks: TaskProps[];
+  onUpdate: (id: string, updatedTask: Partial<TaskProps>) => void;
+  onDelete: (id: string) => void;
+  onToggleComplete: (id: string, completed: boolean) => void;
+}

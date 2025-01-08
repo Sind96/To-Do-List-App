@@ -29,8 +29,15 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
+  const updateTaskHandler = async (
+    id: string,
+    updatedTask: Partial<TaskProps>
+  ) => {
+    const updated = await updateTask(id, updatedTask);
+    setTasks(tasks.map((task) => (task.id === id ? updated : task)));
+  };
 
-
+  
   return (
     <>
       <p className="text-blue-500">Hello</p>

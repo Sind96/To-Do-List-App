@@ -5,3 +5,7 @@ export interface TaskProps {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface TaskFormProps {
+  onSubmit: (title: string) => void;
+}

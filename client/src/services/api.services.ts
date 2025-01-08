@@ -63,7 +63,7 @@ export const updateTask = async (
 };
 
 // Delete a task
-export const deleteTask = async () => {
+export const deleteTask = async (id: string) => {
   try {
     const tasks = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",

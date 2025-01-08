@@ -37,7 +37,22 @@ function App() {
     setTasks(tasks.map((task) => (task.id === id ? updated : task)));
   };
 
-  
+  const deleteTaskHandler = async (id: string) => {
+    await deleteTask(id);
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const toggleCompleteHandler = (id: string, completed: boolean) => {
+    updateTaskHandler(id, { completed });
+  };
+
+  const filteredTasks =
+    filter === "All"
+      ? tasks
+      : tasks.filter((task) =>
+          filter === "Completed" ? task.completed : !task.completed
+        );
+
   return (
     <>
       <p className="text-blue-500">Hello</p>

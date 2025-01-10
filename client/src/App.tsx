@@ -55,7 +55,31 @@ function App() {
 
   return (
     <>
-      <p className="text-blue-500">Hello</p>
+      <div className="max-w-lg mx-auto">
+        <h1 className="text-2xl font-bold mb-4 text-center">To-do List</h1>
+        <div className="justify-center text-center">
+          <TaskForm onSubmit={addTask} />
+        </div>
+        <div className="my-2 justify-center text-center">
+          <button onClick={() => setFilter("All")} className="mr-2">
+            All
+          </button>
+          <button onClick={() => setFilter("Completed")} className="mr-2">
+            Completed
+          </button>
+          <button onClick={() => setFilter("Incomplete")} className="mr-2">
+            Incomplete
+          </button>
+        </div>
+        <div className="my-2 justify-center text-left">
+          <TaskList
+            tasks={filteredTasks}
+            onUpdate={updateTaskHandler}
+            onDelete={deleteTaskHandler}
+            onToggleComplete={toggleCompleteHandler}
+          />
+        </div>
+      </div>
     </>
   );
 }

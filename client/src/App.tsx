@@ -37,12 +37,12 @@ function App() {
     const updated = await updateTask(id, updatedTask);
     console.log("thisisUpdated", updated);
     console.log("thisisUpdated2", tasks);
-    setTasks(tasks.map((task) => (task.id === id ? updated : task)));
+    setTasks(tasks.map((task) => (task._id === id ? updated : task)));
   };
 
   const deleteTaskHandler = async (id: string) => {
     await deleteTask(id);
-    setTasks(tasks.filter((task) => task.id !== id));
+    setTasks(tasks.filter((task) => task._id !== id));
   };
 
   const toggleCompleteHandler = (id: string, completed: boolean) => {

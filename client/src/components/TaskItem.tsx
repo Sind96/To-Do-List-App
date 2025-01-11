@@ -2,7 +2,7 @@ import React from "react";
 import { TaskListProps } from "../types/propType";
 
 export default function TaskItem({
-  task,
+  tasks,
   onUpdate,
   onDelete,
   onToggleComplete,
@@ -11,22 +11,24 @@ export default function TaskItem({
     <div>
       <input
         type="checkbox"
-        checked={task.completed}
-        onChange={() => onToggleComplete(task.id, !task.completed)}
+        checked={tasks.completed}
+        onChange={() => onToggleComplete(tasks._id, !tasks.completed)}
       />
-      <span className={task.completed ? "line-through" : ""}>{task.title}</span>
+      <span className={tasks.completed ? "line-through" : ""}>
+        {tasks.title}
+      </span>
       <div>
         <button
           onClick={() =>
-            onUpdate(task.id, {
-              title: prompt("Edit Task", task.title) || task.title,
+            onUpdate(tasks._id, {
+              title: prompt("Edit Task", tasks.title) || tasks.title,
             })
           }
           className="text-blue-500 mr-2"
         >
           Edit
         </button>
-        <button onClick={() => onDelete(task.id)} className="text-red-600">
+        <button onClick={() => onDelete(tasks._id)} className="text-red-600">
           Delete
         </button>
       </div>

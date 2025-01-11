@@ -1,5 +1,5 @@
 export interface TaskProps {
-  id: string;
+  _id: string;
   title: string;
   completed: boolean;
   createdAt: string;
@@ -11,9 +11,8 @@ export interface TaskFormProps {
 }
 
 export interface TaskListProps {
-  tasks: TaskProps[];
+  tasks: TaskProps;
   onUpdate: (id: string, updatedTask: Partial<TaskProps>) => void;
   onDelete: (id: string) => void;
   onToggleComplete: (id: string, completed: boolean) => void;
 }
-

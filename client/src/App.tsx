@@ -19,6 +19,7 @@ function App() {
   useEffect(() => {
     const loadTasks = async () => {
       const fetchedTasks = await fetchTasks();
+      console.log("fetchedTasks", fetchedTasks);
       setTasks(fetchedTasks);
     };
     loadTasks();
@@ -34,6 +35,8 @@ function App() {
     updatedTask: Partial<TaskProps>
   ) => {
     const updated = await updateTask(id, updatedTask);
+    console.log("thisisUpdated", updated);
+    console.log("thisisUpdated2", tasks);
     setTasks(tasks.map((task) => (task.id === id ? updated : task)));
   };
 

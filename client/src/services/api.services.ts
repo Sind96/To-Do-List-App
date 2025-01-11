@@ -4,6 +4,7 @@ const BASE_URL = "http://localhost:3000/tasks";
 export const fetchTasks = async () => {
   try {
     const tasks = await fetch(BASE_URL);
+    console.log("fetchalltasks", tasks);
     if (!tasks.ok) {
       throw new Error(`Error fetching tasks: ${tasks.statusText}`);
     }
@@ -43,6 +44,7 @@ export const updateTask = async (
   updatedTask: { title?: string; completed?: boolean }
 ) => {
   try {
+    console.log(id);
     const tasks = await fetch(`${BASE_URL}/${id}`, {
       method: "PUT",
       headers: {
@@ -68,11 +70,12 @@ export const deleteTask = async (id: string) => {
     const tasks = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
     });
-
+    console.log("this is tasks", tasks);
     if (!tasks.ok) {
       throw new Error(`Error deleting task: ${tasks.statusText}`);
     }
     const result = await tasks.json();
+    console.log(result);
     return result;
   } catch (error) {
     console.error(`Error in deleteTask: ${error.message}`);

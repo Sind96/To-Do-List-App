@@ -43,6 +43,7 @@ exports.putTasks = async (req, res) => {
 exports.deleteTasks = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("todo.js", id);
 
     const deletedTask = await toDoList.findByIdAndDelete(id);
 
@@ -57,8 +58,12 @@ exports.deleteTasks = async (req, res) => {
 
 exports.getTasks = async (req, res) => {
   try {
-    const tasks = await toDoList.find();
-    res.status(200).send(tasks);
+    const tasks = await toDoList.find().lean();
+    const formattedTasks = tasks.map((task) => ({
+      ...task,
+      id: task._id.toString(),
+    }));
+    res.status(200).send(formattedTasks);
   } catch (error) {
     console.error(`Error in getTasks: ${error.message}`);
     res.status(500).send({ error: "Internal Server Error" });

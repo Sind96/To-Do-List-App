@@ -4,14 +4,17 @@ const BASE_URL = "http://localhost:3000/tasks";
 export const fetchTasks = async () => {
   try {
     const tasks = await fetch(BASE_URL);
-    console.log("fetchalltasks", tasks);
     if (!tasks.ok) {
       throw new Error(`Error fetching tasks: ${tasks.statusText}`);
     }
     const result = await tasks.json();
     return result;
   } catch (error) {
-    console.error(`Error in fetchTasks: ${error.message}`);
+    if (error instanceof Error) {
+      console.error(`Error in fetchTasks: ${error.message}`);
+    } else {
+      console.error("An unknown error occurred");
+    }
     throw error;
   }
 };
@@ -33,7 +36,11 @@ export const createTask = async (title: string) => {
     const result = await tasks.json();
     return result;
   } catch (error) {
-    console.error(`Error in createTask: ${error.message}`);
+    if (error instanceof Error) {
+      console.error(`Error in createTask: ${error.message}`);
+    } else {
+      console.error("An unknown error occurred");
+    }
     throw error;
   }
 };
@@ -44,7 +51,6 @@ export const updateTask = async (
   updatedTask: { title?: string; completed?: boolean }
 ) => {
   try {
-    console.log(id);
     const tasks = await fetch(`${BASE_URL}/${id}`, {
       method: "PUT",
       headers: {
@@ -59,7 +65,11 @@ export const updateTask = async (
     const result = await tasks.json();
     return result;
   } catch (error) {
-    console.error(`Error in updateTask: ${error.message}`);
+    if (error instanceof Error) {
+      console.error(`Error in updateTask: ${error.message}`);
+    } else {
+      console.error("An unknown error occurred");
+    }
     throw error;
   }
 };
@@ -70,15 +80,17 @@ export const deleteTask = async (id: string) => {
     const tasks = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
     });
-    console.log("this is tasks", tasks);
     if (!tasks.ok) {
       throw new Error(`Error deleting task: ${tasks.statusText}`);
     }
     const result = await tasks.json();
-    console.log(result);
     return result;
   } catch (error) {
-    console.error(`Error in deleteTask: ${error.message}`);
+    if (error instanceof Error) {
+      console.error(`Error in deleteTask: ${error.message}`);
+    } else {
+      console.error("An unknown error occurred");
+    }
     throw error;
   }
 };

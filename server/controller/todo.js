@@ -43,7 +43,6 @@ exports.putTasks = async (req, res) => {
 exports.deleteTasks = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("todo.js", id);
 
     const deletedTask = await toDoList.findByIdAndDelete(id);
 

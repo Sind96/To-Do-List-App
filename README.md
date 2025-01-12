@@ -32,6 +32,7 @@ The Todo List App is a straightforward and user-friendly tool to manage your tas
   ```
 
 4. Start the app on both the client and server side for it to work on your localhost.
+   
    ```sh
    cd client - npm run dev
    cd server - nodemon

@@ -54,8 +54,8 @@ function App() {
         );
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
+    <div className="max-w-lg mx-auto p-6 bg-gray-300 min-h-screen">
+      <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">
         ToDo List
       </h1>
       <TaskForm onSubmit={addTask} />
@@ -63,7 +63,7 @@ function App() {
         <button
           onClick={() => setFilter("All")}
           className={`${
-            filter === "All" ? "bg-blue-500 text-white" : "bg-gray-100"
+            filter === "All" ? "bg-blue-500 text-white" : "bg-gray-200"
           } px-4 py-2 rounded transition hover:bg-blue-400 hover:text-white`}
         >
           All
@@ -71,7 +71,7 @@ function App() {
         <button
           onClick={() => setFilter("Completed")}
           className={`${
-            filter === "Completed" ? "bg-blue-500 text-white" : "bg-gray-100"
+            filter === "Completed" ? "bg-blue-500 text-white" : "bg-gray-200"
           } px-4 py-2 rounded transition hover:bg-blue-400 hover:text-white`}
         >
           Completed
@@ -79,7 +79,7 @@ function App() {
         <button
           onClick={() => setFilter("Incomplete")}
           className={`${
-            filter === "Incomplete" ? "bg-blue-500 text-white" : "bg-gray-100"
+            filter === "Incomplete" ? "bg-blue-500 text-white" : "bg-gray-200"
           } px-4 py-2 rounded transition hover:bg-blue-400 hover:text-white`}
         >
           Incomplete

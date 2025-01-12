@@ -1,4 +1,3 @@
-import React from "react";
 import { TaskListPropsList } from "../types/propType";
 import TaskItem from "./TaskItem";
 
@@ -9,7 +8,7 @@ export default function TaskList({
   onToggleComplete,
 }: TaskListPropsList) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       {tasks.map((task) => (
         <TaskItem
           key={task._id}

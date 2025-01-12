@@ -54,33 +54,44 @@ function App() {
         );
 
   return (
-    <>
-      <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold mb-4 text-center">To-do List</h1>
-        <div className="justify-center text-center">
-          <TaskForm onSubmit={addTask} />
-        </div>
-        <div className="my-2 justify-center text-center">
-          <button onClick={() => setFilter("All")} className="mr-2">
-            All
-          </button>
-          <button onClick={() => setFilter("Completed")} className="mr-2">
-            Completed
-          </button>
-          <button onClick={() => setFilter("Incomplete")} className="mr-2">
-            Incomplete
-          </button>
-        </div>
-        <div className="my-2 justify-center text-left">
-          <TaskList
-            tasks={filteredTasks}
-            onUpdate={updateTaskHandler}
-            onDelete={deleteTaskHandler}
-            onToggleComplete={toggleCompleteHandler}
-          />
-        </div>
+    <div className="max-w-lg mx-auto p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
+        ToDo List
+      </h1>
+      <TaskForm onSubmit={addTask} />
+      <div className="flex justify-center my-4 space-x-2">
+        <button
+          onClick={() => setFilter("All")}
+          className={`${
+            filter === "All" ? "bg-blue-500 text-white" : "bg-gray-100"
+          } px-4 py-2 rounded transition hover:bg-blue-400 hover:text-white`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => setFilter("Completed")}
+          className={`${
+            filter === "Completed" ? "bg-blue-500 text-white" : "bg-gray-100"
+          } px-4 py-2 rounded transition hover:bg-blue-400 hover:text-white`}
+        >
+          Completed
+        </button>
+        <button
+          onClick={() => setFilter("Incomplete")}
+          className={`${
+            filter === "Incomplete" ? "bg-blue-500 text-white" : "bg-gray-100"
+          } px-4 py-2 rounded transition hover:bg-blue-400 hover:text-white`}
+        >
+          Incomplete
+        </button>
       </div>
-    </>
+      <TaskList
+        tasks={filteredTasks}
+        onUpdate={updateTaskHandler}
+        onDelete={deleteTaskHandler}
+        onToggleComplete={toggleCompleteHandler}
+      />
+    </div>
   );
 }
 

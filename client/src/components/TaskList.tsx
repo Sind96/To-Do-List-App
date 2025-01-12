@@ -1,5 +1,5 @@
 import React from "react";
-import { TaskListProps } from "../types/propType";
+import { TaskListPropsList } from "../types/propType";
 import TaskItem from "./TaskItem";
 
 export default function TaskList({
@@ -7,7 +7,7 @@ export default function TaskList({
   onUpdate,
   onDelete,
   onToggleComplete,
-}: TaskListProps) {
+}: TaskListPropsList) {
   console.log("Tasks in TaskList:", tasks);
 
   return (

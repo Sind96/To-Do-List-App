@@ -16,3 +16,10 @@ export interface TaskListProps {
   onDelete: (id: string) => void;
   onToggleComplete: (id: string, completed: boolean) => void;
 }
+
+export interface TaskListPropsList {
+  tasks: TaskProps[];
+  onUpdate: (id: string, updatedTask: Partial<TaskProps>) => void;
+  onDelete: (id: string) => void;
+  onToggleComplete: (id: string, completed: boolean) => void;
+}

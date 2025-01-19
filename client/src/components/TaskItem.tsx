@@ -7,7 +7,7 @@ export default function TaskItem({
   onToggleComplete,
 }: TaskListProps) {
   return (
-    <div className="flex justify-between items-center bg-white p-4 rounded shadow-sm hover:shadow-md transition-shadow">
+    <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
       <div className="flex items-center space-x-4">
         <input
           type="checkbox"
@@ -17,7 +17,7 @@ export default function TaskItem({
         />
         <span
           className={`text-lg ${
-            tasks.completed ? "line-through text-gray-400" : "text-gray-800"
+            tasks.completed ? "line-through text-gray-400" : "text-gray-700"
           }`}
         >
           {tasks.title}
@@ -30,13 +30,13 @@ export default function TaskItem({
               title: prompt("Edit Task", tasks.title) || tasks.title,
             })
           }
-          className="text-blue-500 hover:text-blue-600"
+          className="text-blue-500 hover:text-blue-700"
         >
           Edit
         </button>
         <button
           onClick={() => onDelete(tasks._id)}
-          className="text-red-600 hover:text-red-700"
+          className="text-red-600 hover:text-red-800"
         >
           Delete
         </button>

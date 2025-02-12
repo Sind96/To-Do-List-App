@@ -1,4 +1,4 @@
-import { TaskListProps } from "../types/propType";
+import { TaskListProps } from "../types/types";
 
 export default function TaskItem({
   tasks,

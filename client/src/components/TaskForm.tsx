@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TaskFormProps } from "../types/propType";
+import { TaskFormProps } from "../types/types";
 
 export default function TaskForm({ onSubmit }: TaskFormProps) {
   const [title, setTitle] = useState("");

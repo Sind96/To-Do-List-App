@@ -1,6 +1,6 @@
-const toDoList = require("../model/todo");
+import toDoList from "../model/todo.js";
 
-exports.postTasks = async (req, res) => {
+export const postTasks = async (req, res) => {
   try {
     const { title } = req.body;
     if (!title) return res.status(400).send({ error: "Title is required" });
@@ -20,7 +20,7 @@ exports.postTasks = async (req, res) => {
   }
 };
 
-exports.putTasks = async (req, res) => {
+export const putTasks = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, completed } = req.body;
@@ -40,7 +40,7 @@ exports.putTasks = async (req, res) => {
   }
 };
 
-exports.deleteTasks = async (req, res) => {
+export const deleteTasks = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -55,7 +55,7 @@ exports.deleteTasks = async (req, res) => {
   }
 };
 
-exports.getTasks = async (req, res) => {
+export const getTasks = async (req, res) => {
   try {
     const tasks = await toDoList.find().lean();
     const formattedTasks = tasks.map((task) => ({

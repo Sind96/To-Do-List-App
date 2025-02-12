@@ -4,7 +4,7 @@ import {
   putTasks,
   deleteTasks,
   getTasks,
-} from "./controller/todo.js";
+} from "./controller/taskController.js";
 const router = express.Router();
 
 router.get("/tasks", getTasks);

@@ -1,4 +1,18 @@
-import Task from "../model/todo.js";
+import Task from "../model/Task.js";
+
+export const getTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find().lean();
+    const formattedTasks = tasks.map((task) => ({
+      ...task,
+      id: task._id.toString(),
+    }));
+    res.status(200).send(formattedTasks);
+  } catch (error) {
+    console.error("Error in getTasks:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 export const postTasks = async (req, res) => {
   try {
@@ -51,20 +65,6 @@ export const deleteTasks = async (req, res) => {
     res.status(200).send({ message: "Task deleted successfully" });
   } catch (error) {
     console.error("Error in deleteTasks:", error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
-export const getTasks = async (req, res) => {
-  try {
-    const tasks = await Task.find().lean();
-    const formattedTasks = tasks.map((task) => ({
-      ...task,
-      id: task._id.toString(),
-    }));
-    res.status(200).send(formattedTasks);
-  } catch (error) {
-    console.error("Error in getTasks:", error);
     res.status(500).json({ message: "Server error" });
   }
 };

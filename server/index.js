@@ -1,11 +1,13 @@
-const express = require("express");
-const app = express();
-var cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import router from "./router";
 
-const port = 3000;
-const router = require("./router");
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());

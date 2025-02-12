@@ -1,11 +1,11 @@
-import toDoList from "../model/todo.js";
+import Task from "../model/todo.js";
 
 export const postTasks = async (req, res) => {
   try {
     const { title } = req.body;
     if (!title) return res.status(400).send({ error: "Title is required" });
 
-    const newTask = new toDoList({
+    const newTask = new Task({
       title,
       completed: false,
       createdAt: new Date(),
@@ -25,7 +25,7 @@ export const putTasks = async (req, res) => {
     const { id } = req.params;
     const { title, completed } = req.body;
 
-    const updatedTask = await toDoList.findByIdAndUpdate(
+    const updatedTask = await Task.findByIdAndUpdate(
       id,
       { title, completed, updatedAt: new Date() },
       { new: true }
@@ -44,7 +44,7 @@ export const deleteTasks = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const deletedTask = await toDoList.findByIdAndDelete(id);
+    const deletedTask = await Task.findByIdAndDelete(id);
 
     if (!deletedTask) return res.status(404).send({ error: "Task not found" });
 
@@ -57,7 +57,7 @@ export const deleteTasks = async (req, res) => {
 
 export const getTasks = async (req, res) => {
   try {
-    const tasks = await toDoList.find().lean();
+    const tasks = await Task.find().lean();
     const formattedTasks = tasks.map((task) => ({
       ...task,
       id: task._id.toString(),

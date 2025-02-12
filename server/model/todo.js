@@ -7,4 +7,4 @@ const toDoListSchema = new mongoose.Schema({
   updatedAt: Date,
 });
 
-export default mongoose.model("toDoList", toDoListSchema);
+export default mongoose.model("Task", toDoListSchema);

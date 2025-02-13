@@ -34,7 +34,7 @@ export const createTask = async (title: string) => {
       throw new Error(`Error creating task: ${tasks.statusText}`);
     }
     const result = await tasks.json();
-    return result.task;
+    return result;
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Error in createTask: ${error.message}`);
@@ -63,7 +63,7 @@ export const updateTask = async (
       throw new Error(`Error updating task: ${tasks.statusText}`);
     }
     const result = await tasks.json();
-    return result.task;
+    return result;
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Error in updateTask: ${error.message}`);

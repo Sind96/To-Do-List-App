@@ -11,7 +11,7 @@ export const fetchTasks = async () => {
     return result.tasks;
   } catch (error) {
     if (error instanceof Error) {
-      console.error(`Error in fetchTasks: ${error.message}`);
+      console.error(`Error in fetchTasks: ${error.message}\n${error.stack}`);
     } else {
       console.error("An unknown error occurred");
     }

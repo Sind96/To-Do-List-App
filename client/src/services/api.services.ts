@@ -1,13 +1,18 @@
-const BASE_URL = "http://localhost:3000/tasks";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-// Fetch all tasks
+// Fetch all tasks (getTasks)
 export const fetchTasks = async () => {
   try {
     const tasks = await fetch(BASE_URL);
     if (!tasks.ok) {
       throw new Error(`Error fetching tasks: ${tasks.statusText}`);
     }
+
     const result = await tasks.json();
+    if (!result || !result.tasks) {
+      throw new Error("Invalid API response: Missing 'tasks' field");
+    }
+
     return result.tasks;
   } catch (error) {
     if (error instanceof Error) {
@@ -19,7 +24,7 @@ export const fetchTasks = async () => {
   }
 };
 
-// Create a new task
+// Create a new task (postTask)
 export const createTask = async (title: string) => {
   try {
     const tasks = await fetch(BASE_URL, {
@@ -29,7 +34,6 @@ export const createTask = async (title: string) => {
       },
       body: JSON.stringify({ title }),
     });
-
     if (!tasks.ok) {
       throw new Error(`Error creating task: ${tasks.statusText}`);
     }
@@ -37,7 +41,7 @@ export const createTask = async (title: string) => {
     return result.task;
   } catch (error) {
     if (error instanceof Error) {
-      console.error(`Error in createTask: ${error.message}`);
+      console.error(`Error in createTask: ${error.message}\n${error.stack}`);
     } else {
       console.error("An unknown error occurred");
     }
@@ -45,7 +49,7 @@ export const createTask = async (title: string) => {
   }
 };
 
-// Update an existing task
+// Update an existing task (putTask)
 export const updateTask = async (
   id: string,
   updatedTask: { title?: string; completed?: boolean }
@@ -66,7 +70,7 @@ export const updateTask = async (
     return result.task;
   } catch (error) {
     if (error instanceof Error) {
-      console.error(`Error in updateTask: ${error.message}`);
+      console.error(`Error in updateTask: ${error.message}\n${error.stack}`);
     } else {
       console.error("An unknown error occurred");
     }
@@ -74,7 +78,7 @@ export const updateTask = async (
   }
 };
 
-// Delete a task
+// Delete a task (deleteTask)
 export const deleteTask = async (id: string) => {
   try {
     const tasks = await fetch(`${BASE_URL}/${id}`, {
@@ -87,7 +91,7 @@ export const deleteTask = async (id: string) => {
     return result;
   } catch (error) {
     if (error instanceof Error) {
-      console.error(`Error in deleteTask: ${error.message}`);
+      console.error(`Error in deleteTask: ${error.message}\n${error.stack}`);
     } else {
       console.error("An unknown error occurred");
     }

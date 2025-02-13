@@ -53,7 +53,7 @@ const HomePage = () => {
         );
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white min-h-screen shadow-lg rounded-lg border-t-4 border-blue-500">
+    <div className="p-6 bg-white shadow-lg rounded-lg border-t-4 border-blue-500">
       <h1 className="text-5xl font-extrabold mb-6 text-center text-blue-600">
         ToDo List
       </h1>

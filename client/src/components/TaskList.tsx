@@ -1,12 +1,12 @@
 import { TaskListPropsList } from "../types/types";
 import TaskItem from "./TaskItem";
 
-export default function TaskList({
+const TaskList = ({
   tasks,
   onUpdate,
   onDelete,
   onToggleComplete,
-}: TaskListPropsList) {
+}: TaskListPropsList) => {
   return (
     <div className="space-y-4">
       {tasks.map((task) => (
@@ -20,4 +20,6 @@ export default function TaskList({
       ))}
     </div>
   );
-}
+};
+
+export default TaskList;

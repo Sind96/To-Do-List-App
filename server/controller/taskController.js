@@ -3,9 +3,9 @@ import Task from "../model/Task.js";
 export const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find().lean();
-    const formattedTasks = tasks.map(({ _id, ...rest }) => ({
-      ...rest,
-      id: _id.toString(),
+    const formattedTasks = tasks.map((task) => ({
+      ...task,
+      id: task._id.toString(),
     }));
 
     res.status(200).json({
@@ -31,7 +31,9 @@ export const postTask = async (req, res) => {
     });
 
     await newTask.save();
-    res.status(201).json(newTask);
+    res
+      .status(201)
+      .json({ message: "Task posted successfully", task: newTask });
   } catch (error) {
     console.error("Error in postTask:", error);
     res.status(500).json({ message: "Internal Server error" });
@@ -43,15 +45,22 @@ export const putTask = async (req, res) => {
     const { id } = req.params;
     const { title, completed } = req.body;
 
+    if (title === undefined && completed === undefined) {
+      return res
+        .status(400)
+        .json({ error: "Provide at least one field to update" });
+    }
+
     const updatedTask = await Task.findByIdAndUpdate(
       id,
-      { title, completed, updatedAt: new Date() },
-      { new: true }
+      { title, completed, updatedAt: Date.now() },
+      { new: true, lean: true }
     );
-
     if (!updatedTask) return res.status(404).json({ error: "Task not found" });
 
-    res.status(200).json(updatedTask);
+    res
+      .status(200)
+      .json({ message: "Task updated successfully", task: updatedTask });
   } catch (error) {
     console.error("Error in putTask:", error);
     res.status(500).json({ message: "Internal Server error" });
@@ -63,7 +72,6 @@ export const deleteTask = async (req, res) => {
     const { id } = req.params;
 
     const deletedTask = await Task.findByIdAndDelete(id);
-
     if (!deletedTask) return res.status(404).json({ error: "Task not found" });
 
     res.status(200).json({ message: "Task deleted successfully" });

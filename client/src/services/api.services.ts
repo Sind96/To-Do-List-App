@@ -8,7 +8,7 @@ export const fetchTasks = async () => {
       throw new Error(`Error fetching tasks: ${tasks.statusText}`);
     }
     const result = await tasks.json();
-    return result;
+    return result.tasks;
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Error in fetchTasks: ${error.message}`);

@@ -7,7 +7,10 @@ export const getTasks = async (req, res) => {
       ...task,
       id: task._id.toString(),
     }));
-    res.status(200).send(formattedTasks);
+    res.status(200).json({
+      message: "Tasks fetched successfully",
+      tasks: formattedTasks,
+    });
   } catch (error) {
     console.error("Error in getTasks:", error);
     res.status(500).json({ message: "Server error" });

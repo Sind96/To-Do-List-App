@@ -3,9 +3,9 @@ import Task from "../model/Task.js";
 export const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find().lean();
-    const formattedTasks = tasks.map((task) => ({
-      ...task,
-      id: task._id.toString(),
+    const formattedTasks = tasks.map(({ _id, ...rest }) => ({
+      ...rest,
+      id: _id.toString(),
     }));
 
     res.status(200).json({

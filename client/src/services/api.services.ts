@@ -27,17 +27,22 @@ export const fetchTasks = async () => {
 // Create a new task (postTask)
 export const createTask = async (title: string) => {
   try {
-    const tasks = await fetch(BASE_URL, {
+    const task = await fetch(BASE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title }),
     });
-    if (!tasks.ok) {
-      throw new Error(`Error creating task: ${tasks.statusText}`);
+    if (!task.ok) {
+      throw new Error(`Error creating task: ${task.statusText}`);
     }
-    const result = await tasks.json();
+
+    const result = await task.json();
+    if (!result || !result.task) {
+      throw new Error("Invalid API response: Missing 'tasks' field");
+    }
+
     return result.task;
   } catch (error) {
     if (error instanceof Error) {

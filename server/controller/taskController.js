@@ -7,6 +7,10 @@ export const getTasks = async (req, res) => {
       ...task,
       id: task._id.toString(),
     }));
+    if (formattedTasks.length === 0) {
+      return res.status(404).json({ error: "No tasks found" });
+    }
+
     res.status(200).json({
       message: "Tasks fetched successfully",
       tasks: formattedTasks,

@@ -17,7 +17,7 @@ export const getTasks = async (req, res) => {
   }
 };
 
-export const postTasks = async (req, res) => {
+export const postTask = async (req, res) => {
   try {
     const { title } = req.body;
     if (!title) return res.status(400).send({ error: "Title is required" });
@@ -32,12 +32,12 @@ export const postTasks = async (req, res) => {
     await newTask.save();
     res.status(201).send(newTask);
   } catch (error) {
-    console.error("Error in postTasks:", error);
+    console.error("Error in postTask:", error);
     res.status(500).json({ message: "Internal Server error" });
   }
 };
 
-export const putTasks = async (req, res) => {
+export const putTask = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, completed } = req.body;
@@ -52,12 +52,12 @@ export const putTasks = async (req, res) => {
 
     res.status(200).send(updatedTask);
   } catch (error) {
-    console.error("Error in putTasks:", error);
+    console.error("Error in putTask:", error);
     res.status(500).json({ message: "Internal Server error" });
   }
 };
 
-export const deleteTasks = async (req, res) => {
+export const deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -67,7 +67,7 @@ export const deleteTasks = async (req, res) => {
 
     res.status(200).send({ message: "Task deleted successfully" });
   } catch (error) {
-    console.error("Error in deleteTasks:", error);
+    console.error("Error in deleteTask:", error);
     res.status(500).json({ message: "Internal Server error" });
   }
 };

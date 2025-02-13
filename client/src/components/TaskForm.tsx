@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TaskFormProps } from "../types/types";
 
-export default function TaskForm({ onSubmit }: TaskFormProps) {
+const TaskForm = ({ onSubmit }: TaskFormProps) => {
   const [title, setTitle] = useState("");
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -28,4 +28,6 @@ export default function TaskForm({ onSubmit }: TaskFormProps) {
       </button>
     </form>
   );
-}
+};
+
+export default TaskForm;

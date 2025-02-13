@@ -1,11 +1,11 @@
 import { TaskListProps } from "../types/types";
 
-export default function TaskItem({
+const TaskItem = ({
   tasks,
   onUpdate,
   onDelete,
   onToggleComplete,
-}: TaskListProps) {
+}: TaskListProps) => {
   return (
     <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
       <div className="flex items-center space-x-4">
@@ -43,4 +43,6 @@ export default function TaskItem({
       </div>
     </div>
   );
-}
+};
+
+export default TaskItem;

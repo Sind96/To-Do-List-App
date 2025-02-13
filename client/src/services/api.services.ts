@@ -40,7 +40,7 @@ export const createTask = async (title: string) => {
 
     const result = await task.json();
     if (!result || !result.task) {
-      throw new Error("Invalid API response: Missing 'tasks' field");
+      throw new Error("Invalid API response: Missing 'task' field");
     }
 
     return result.task;
@@ -73,7 +73,7 @@ export const updateTask = async (
 
     const result = await task.json();
     if (!result || !result.task) {
-      throw new Error("Invalid API response: Missing 'tasks' field");
+      throw new Error("Invalid API response: Missing 'task' field");
     }
 
     return result.task;
@@ -90,13 +90,18 @@ export const updateTask = async (
 // Delete a task (deleteTask)
 export const deleteTask = async (id: string) => {
   try {
-    const tasks = await fetch(`${BASE_URL}/${id}`, {
+    const task = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
     });
-    if (!tasks.ok) {
-      throw new Error(`Error deleting task: ${tasks.statusText}`);
+    if (!task.ok) {
+      throw new Error(`Error deleting task: ${task.statusText}`);
     }
-    const result = await tasks.json();
+
+    const result = await task.json();
+    if (!result || !result.task) {
+      throw new Error("Invalid API response: Missing 'task' field");
+    }
+
     return result;
   } catch (error) {
     if (error instanceof Error) {

@@ -26,8 +26,8 @@ export const postTask = async (req, res) => {
     const newTask = new Task({
       title,
       completed: false,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
     });
 
     await newTask.save();

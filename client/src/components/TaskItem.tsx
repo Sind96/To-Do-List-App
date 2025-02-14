@@ -13,7 +13,7 @@ const TaskItem = ({
           type="checkbox"
           checked={tasks.completed}
           onChange={() => onToggleComplete(tasks._id, !tasks.completed)}
-          className="w-5 h-5 text-blue-500 border-gray-300 rounded focus:ring-blue-400"
+          className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-400"
         />
         <div>
           <span
@@ -37,7 +37,7 @@ const TaskItem = ({
           className={`px-2 py-1 rounded ${
             tasks.completed
               ? "text-gray-400 cursor-not-allowed"
-              : "text-blue-500 hover:text-blue-700"
+              : "text-blue-600 hover:text-blue-700"
           }`}
         >
           Edit

@@ -53,8 +53,8 @@ const HomePage = () => {
         );
 
   return (
-    <div className="p-6 bg-white shadow-lg rounded-lg border-t-4 border-blue-500">
-      <h1 className="text-5xl font-extrabold mb-6 text-center text-blue-600">
+    <div className="p-6 bg-white dark:bg-gray-700 shadow-lg rounded-lg border-t-4 border-blue-500">
+      <h1 className="text-5xl font-extrabold mb-6 text-center text-blue-600 dark:text-blue-300">
         ToDo List
       </h1>
       <TaskForm onSubmit={addTask} />

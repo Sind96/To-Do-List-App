@@ -15,25 +15,34 @@ const TaskItem = ({
           onChange={() => onToggleComplete(tasks._id, !tasks.completed)}
           className="w-5 h-5 text-blue-500 border-gray-300 rounded focus:ring-blue-400"
         />
-        <span
-          className={`text-lg ${
-            tasks.completed ? "line-through text-gray-400" : "text-gray-700"
-          }`}
-        >
-          {tasks.title}
-        </span>
+        <div>
+          <span
+            className={`text-lg ${
+              tasks.completed ? "line-through text-gray-400" : "text-gray-700"
+            }`}
+          >
+            {tasks.title}
+          </span>
+        </div>
       </div>
       <div className="flex space-x-2">
         <button
           onClick={() =>
+            !tasks.completed &&
             onUpdate(tasks._id, {
               title: prompt("Edit Task", tasks.title) || tasks.title,
             })
           }
-          className="text-blue-500 hover:text-blue-700"
+          disabled={tasks.completed}
+          className={`px-2 py-1 rounded ${
+            tasks.completed
+              ? "text-gray-400 cursor-not-allowed"
+              : "text-blue-500 hover:text-blue-700"
+          }`}
         >
           Edit
         </button>
+
         <button
           onClick={() => onDelete(tasks._id)}
           className="text-red-600 hover:text-red-800"

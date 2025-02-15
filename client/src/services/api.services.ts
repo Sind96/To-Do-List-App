@@ -1,9 +1,9 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Fetch all tasks (getTasks)
 export const fetchTasks = async () => {
   try {
-    const tasks = await fetch(BASE_URL);
+    const tasks = await fetch(API_BASE_URL);
     if (!tasks.ok) {
       throw new Error(`Error fetching tasks: ${tasks.statusText}`);
     }
@@ -27,7 +27,7 @@ export const fetchTasks = async () => {
 // Create a new task (postTask)
 export const createTask = async (title: string) => {
   try {
-    const task = await fetch(BASE_URL, {
+    const task = await fetch(API_BASE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const updateTask = async (
   updatedTask: { title?: string; completed?: boolean }
 ) => {
   try {
-    const task = await fetch(`${BASE_URL}/${id}`, {
+    const task = await fetch(`${API_BASE_URL}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export const updateTask = async (
 // Delete a task (deleteTask)
 export const deleteTask = async (id: string) => {
   try {
-    const task = await fetch(`${BASE_URL}/${id}`, {
+    const task = await fetch(`${API_BASE_URL}/${id}`, {
       method: "DELETE",
     });
     if (!task.ok) {

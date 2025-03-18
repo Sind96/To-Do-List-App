@@ -7,7 +7,7 @@ import {
 } from "../services/api.services.js";
 import TaskForm from "../components/TaskForm.js";
 import TaskList from "../components/TaskList.js";
-import { TaskProps } from "../types/types.js";
+import { TaskProps } from "../@types/task.types.js";
 
 const HomePage = () => {
   const [tasks, setTasks] = useState<TaskProps[]>([]);

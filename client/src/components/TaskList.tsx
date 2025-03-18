@@ -1,4 +1,4 @@
-import { TaskListPropsList } from "../types/types";
+import { TaskListPropsList } from "../@types/task.types";
 import TaskItem from "./TaskItem";
 
 const TaskList = ({

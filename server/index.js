@@ -24,3 +24,5 @@ app.use(router);
     console.log(`Server & Database could not connect:`, error);
   }
 })();
+
+export default app;

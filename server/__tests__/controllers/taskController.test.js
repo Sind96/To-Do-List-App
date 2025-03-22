@@ -6,7 +6,7 @@ beforeAll(async () => await connectTestDB());
 afterAll(async () => await disconnectTestDB());
 
 describe("Task Controller", () => {
-  beforeEach(async () => await Task.deleteMany({})); // Clear DB before each test
+  beforeEach(async () => await Task.deleteMany({})); 
 
   test("getTasks should return an empty array initially", async () => {
     const req = {};

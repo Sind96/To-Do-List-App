@@ -22,7 +22,7 @@ describe("Task Controller", () => {
       message: "Tasks fetched successfully",
       tasks: [],
     });
-  });
+  }); 
 
   test("postTask should create a new task", async () => {
     const req = { body: { title: "New Task" } };

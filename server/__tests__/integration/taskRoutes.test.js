@@ -12,13 +12,25 @@ describe("Task API Endpoints", () => {
 
   test("POST /tasks should create a task", async () => {
     const response = (await request(app).post("/tasks")).setEncoding({
-      title: "Integration Test Task"
-    })
+      title: "Integration Test Task",
+    });
 
     expect(response.status).toBe(201);
     expect(response.body.task).toHaveProperty("_id");
-    expect(response.body.task.title).toBe("Integration Test Task")
-  })
+    expect(response.body.task.title).toBe("Integration Test Task");
+  });
 
+  test("GET /tasks should return tasks", async () => {
+    await Task.create({
+      title: "Existing Task",
+      completed: false,
+    });
+
+    const response = await request(app).get("/tasks");
+
+    expect(response.status).toBe(200);
+    expect(response.body.tasks.length).toBe(1);
+    expect(response.body.tasks[0].title).toBe("Existing Task");
+  });
   
 });

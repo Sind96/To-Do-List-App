@@ -4,3 +4,5 @@ import app from "../../index.js";
 import { connectTestDB, disconnectTestDB } from "../setupTestDB.js";
 import Task from "../../model/Task.js";
 
+beforeAll(async () => await connectTestDB());
+afterAll(async () => await disconnectTestDB());

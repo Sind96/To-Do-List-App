@@ -49,5 +49,15 @@ describe("Task API Endpoints", () => {
     expect(response.body.task.completed).toBe(true);
   });
 
-  
+  test("DELETE /tasks/:id should remove a task", async () => {
+    const task = Task.create({
+      title: "Delete test",
+      completed: false,
+    });
+
+    const response = await request(app).delete("/tasks/${task._id}");
+
+    expect(response.status).toBe(200);
+    expect(response.body.message).toBe("Task deleted successfully");
+  });
 });

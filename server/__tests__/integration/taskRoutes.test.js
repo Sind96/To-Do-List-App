@@ -32,5 +32,22 @@ describe("Task API Endpoints", () => {
     expect(response.body.tasks.length).toBe(1);
     expect(response.body.tasks[0].title).toBe("Existing Task");
   });
+
+  test("PUT /tasks/:id should update task", async () => {
+    const task = await Task.create({
+      title: "Update me",
+      completed: "false",
+    });
+
+    const response = await request(app).put("/tasks/${task._id}").send({
+      title: "Updated task",
+      completed: true,
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.body.task.title).toBe("Updated task");
+    expect(response.body.task.completed).toBe(true);
+  });
+
   
 });

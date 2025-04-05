@@ -11,6 +11,14 @@ describe("Task API Endpoints", () => {
   beforeEach(async () => await Task.deleteMany({}));
 
   test("POST /tasks should create a task", async () => {
-    const response = await request(app);
+    const response = (await request(app).post("/tasks")).setEncoding({
+      title: "Integration Test Task"
+    })
+
+    expect(response.status).toBe(201);
+    expect(response.body.task).toHaveProperty("_id");
+    expect(response.body.task.title).toBe("Integration Test Task")
   })
+
+  
 });

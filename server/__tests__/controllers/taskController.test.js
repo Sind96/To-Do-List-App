@@ -5,9 +5,9 @@ import { connectTestDB, disconnectTestDB } from "../setupTestDB.js";
 beforeAll(async () => await connectTestDB());
 afterAll(async () => await disconnectTestDB());
 
-describe("Task Controller", () => {
-  beforeEach(async () => await Task.deleteMany({})); 
+beforeEach(async () => await Task.deleteMany({})); 
 
+describe("Task Controller", () => {
   test("getTasks should return an empty array initially", async () => {
     const req = {};
     const res = {

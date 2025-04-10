@@ -10,7 +10,6 @@ afterAll(async () => await disconnectTestDB());
 beforeEach(async () => await Task.deleteMany({}));
 
 describe("Task API Endpoints", () => {
-
   test("POST /tasks should create a task", async () => {
     const response = (await request(app).post("/tasks")).setEncoding({
       title: "Integration Test Task",

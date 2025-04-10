@@ -11,7 +11,7 @@ beforeEach(async () => await Task.deleteMany({}));
 
 describe("Task API Endpoints", () => {
   test("POST /tasks should create a task", async () => {
-    const response = (await request(app).post("/tasks")).setEncoding({
+    const response = await request(app).post("/tasks").send({
       title: "Integration Test Task",
     });
 
@@ -36,10 +36,10 @@ describe("Task API Endpoints", () => {
   test("PUT /tasks/:id should update task", async () => {
     const task = await Task.create({
       title: "Update me",
-      completed: "false",
+      completed: false,
     });
 
-    const response = await request(app).put("/tasks/${task._id}").send({
+    const response = await request(app).put(`/tasks/${task._id}`).send({
       title: "Updated task",
       completed: true,
     });
@@ -50,12 +50,12 @@ describe("Task API Endpoints", () => {
   });
 
   test("DELETE /tasks/:id should remove a task", async () => {
-    const task = Task.create({
+    const task = await Task.create({
       title: "Delete test",
       completed: false,
     });
 
-    const response = await request(app).delete("/tasks/${task._id}");
+    const response = await request(app).delete(`/tasks/${task._id}`);
 
     expect(response.status).toBe(200);
     expect(response.body.message).toBe("Task deleted successfully");

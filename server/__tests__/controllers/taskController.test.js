@@ -1,11 +1,16 @@
-import { getTasks, postTask, putTask, deleteTask } from "../../controller/taskController.js";
+import {
+  getTasks,
+  postTask,
+  putTask,
+  deleteTask,
+} from "../../controller/taskController.js";
 import Task from "../../model/Task.js";
-import { connectTestDB, disconnectTestDB } from "../setupTestDB.js";
+import { connectTestDB, disconnectTestDB } from "../../utils/setupTestDB.js";
 
 beforeAll(async () => await connectTestDB());
 afterAll(async () => await disconnectTestDB());
 
-beforeEach(async () => await Task.deleteMany({})); 
+beforeEach(async () => await Task.deleteMany({}));
 
 describe("Task Controller", () => {
   test("getTasks should return an empty array initially", async () => {
@@ -22,7 +27,7 @@ describe("Task Controller", () => {
       message: "Tasks fetched successfully",
       tasks: [],
     });
-  }); 
+  });
 
   test("postTask should create a new task", async () => {
     const req = { body: { title: "New Task" } };
@@ -59,7 +64,10 @@ describe("Task Controller", () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         message: "Task updated successfully",
-        task: expect.objectContaining({ title: "Updated Task", completed: true }),
+        task: expect.objectContaining({
+          title: "Updated Task",
+          completed: true,
+        }),
       })
     );
   });
@@ -75,6 +83,8 @@ describe("Task Controller", () => {
     await deleteTask(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ message: "Task deleted successfully" });
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Task deleted successfully",
+    });
   });
 });

@@ -6,6 +6,11 @@
   "scripts": {
     "test": "jest"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
   "author": "",
   "license": "ISC",
   "description": "",

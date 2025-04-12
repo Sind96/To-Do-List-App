@@ -10,9 +10,8 @@ import { connectTestDB, disconnectTestDB } from "../../utils/setupTestDB.js";
 beforeAll(async () => await connectTestDB());
 afterAll(async () => await disconnectTestDB());
 
-beforeEach(async () => await Task.deleteMany({}));
-
 describe("Task Controller", () => {
+  beforeEach(async () => await Task.deleteMany({}));
   test("getTasks should return an empty array initially", async () => {
     const req = {};
     const res = {

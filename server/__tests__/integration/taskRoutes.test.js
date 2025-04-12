@@ -7,9 +7,8 @@ import Task from "../../model/Task.js";
 beforeAll(async () => await connectTestDB());
 afterAll(async () => await disconnectTestDB());
 
-beforeEach(async () => await Task.deleteMany({}));
-
 describe("Task API Endpoints", () => {
+  beforeEach(async () => await Task.deleteMany({}));
   test("POST /tasks should create a task", async () => {
     const response = await request(app).post("/tasks").send({
       title: "Integration Test Task",

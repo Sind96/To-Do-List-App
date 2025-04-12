@@ -19,6 +19,7 @@ describe("Task Controller", () => {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
+    
     await getTasks(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);

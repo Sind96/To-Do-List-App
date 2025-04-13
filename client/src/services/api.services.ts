@@ -96,9 +96,8 @@ export const deleteTask = async (id: string) => {
     if (!task.ok) {
       throw new Error(`Error deleting task: ${task.statusText}`);
     }
-
     const result = await task.json();
-    if (!result || !result.task) {
+    if (!result) {
       throw new Error("Invalid API response: Missing 'task' field");
     }
 

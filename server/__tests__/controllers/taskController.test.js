@@ -30,7 +30,11 @@ describe("Task Controller", () => {
   });
 
   test("postTask should create a new task", async () => {
-    const req = { body: { title: "New Task" } };
+    const req = { 
+      body: { 
+        title: "New Task" 
+      } 
+    };
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),

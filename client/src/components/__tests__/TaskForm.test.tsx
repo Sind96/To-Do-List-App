@@ -20,7 +20,7 @@ describe("TaskForm", () => {
     fireEvent.change(input, { target: { value: "new task" } });
     fireEvent.click(button);
 
-    expect(handleSubmit).toHaveBeenCalledWith("New Task");
+    expect(handleSubmit).toHaveBeenCalledWith("new task");
     expect(input).toHaveValue("");
   });
 

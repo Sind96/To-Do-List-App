@@ -1,6 +1,5 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import TaskForm from "../TaskForm";
+import TaskForm from "../TaskForm.tsx";
 import "@testing-library/jest-dom";
 
 describe("TaskForm", () => {

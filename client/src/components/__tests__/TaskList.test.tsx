@@ -39,4 +39,11 @@ describe("", () => {
     expect(screen.getByText("Test Task 1")).toBeInTheDocument();
     expect(screen.getByText("Test Task 2")).toBeInTheDocument();
   });
+
+  it("calls onDelete when delete is clicked", () => {
+    const deleteButtons = screen.getAllByText("Delete");
+    fireEvent.click(deleteButtons[0]);
+
+    expect(onDelete).toHaveBeenCalledWith("1");
+  });
 });

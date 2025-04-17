@@ -25,11 +25,18 @@ describe("", () => {
   const onToggleComplete = jest.fn();
 
   beforeEach(() => {
-    render(<TaskList 
-      tasks={mockTasks}
-      onUpdate={onUpdate}
-      onDelete={onDelete}
-      onToggleComplete={onToggleComplete}
-      />)
-  })
+    render(
+      <TaskList
+        tasks={mockTasks}
+        onUpdate={onUpdate}
+        onDelete={onDelete}
+        onToggleComplete={onToggleComplete}
+      />
+    );
+  });
+
+  it("renders all tasks", () => {
+    expect(screen.getByText("Test Task 1")).toBeInTheDocument();
+    expect(screen.getByText("Test Task 2")).toBeInTheDocument();
+  });
 });

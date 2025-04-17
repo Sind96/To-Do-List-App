@@ -19,4 +19,17 @@ describe("", () => {
       updatedAt: "",
     },
   ];
+
+  const onUpdate = jest.fn();
+  const onDelete = jest.fn();
+  const onToggleComplete = jest.fn();
+
+  beforeEach(() => {
+    render(<TaskList 
+      tasks={mockTasks}
+      onUpdate={onUpdate}
+      onDelete={onDelete}
+      onToggleComplete={onToggleComplete}
+      />)
+  })
 });

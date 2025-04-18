@@ -28,5 +28,18 @@ describe("HomePage Integration", () => {
     expect(await screen.findByText("Task Two")).toBeInTheDocument();
   });
 
- 
+  test("can add a task", async () => {
+    mockFetch.mockResolvedValue([]);
+    mockCreate.mockResolvedValue({ _id: "3", title: "New Task", completed: false });
+
+    render(<HomePage />);
+
+    fireEvent.change(screen.getByPlaceholderText(/add a task/i), {
+      target: { value: "New Task" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /add/i }));
+
+    expect(await screen.findByText("New Task")).toBeInTheDocument();
+    expect(mockCreate).toHaveBeenCalledWith("New Task");
+  });
 });

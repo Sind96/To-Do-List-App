@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
+import TaskForm from "../components/TaskForm";
+import TaskList from "../components/TaskList";
+import { TaskProps } from "../@types/task.types";
 import {
-  fetchTasks,
   createTask,
-  updateTask,
   deleteTask,
-} from "../services/api.services.js";
-import TaskForm from "../components/TaskForm.js";
-import TaskList from "../components/TaskList.js";
-import { TaskProps } from "../@types/task.types.js";
+  fetchTasks,
+  updateTask,
+} from "../services/api.services";
 
 const HomePage = () => {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
